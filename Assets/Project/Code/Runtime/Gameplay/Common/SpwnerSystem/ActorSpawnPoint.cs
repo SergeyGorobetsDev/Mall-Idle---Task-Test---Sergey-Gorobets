@@ -8,7 +8,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.SpwnerSystem
         private Transform parentTransform;
 
         private void Awake() =>
-            parentTransform ??= transform;
+            parentTransform = parentTransform != null ? parentTransform : transform;
 
         public Vector3 GetPosition() =>
             parentTransform.position;

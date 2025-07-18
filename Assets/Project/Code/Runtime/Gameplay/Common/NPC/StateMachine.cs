@@ -17,6 +17,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         public void Initialize(ActorEntity actorEntity, NavMeshAgent agent)
         {
             states.Clear();
+            var spawnState = new SpawnState(this, actorEntity, agent);
             var waitState = new WaitForCachRegisterState(this, actorEntity, agent);
             var getFoodState = new GetFoodState(this, actorEntity, agent);
             var payForFoodState = new PayForFoodState(this, actorEntity, agent);
@@ -28,6 +29,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
 
             states = new List<State>(8)
             {
+                spawnState,
                 waitState,
                 getFoodState,
                 payForFoodState,

@@ -28,6 +28,8 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
                     agent.angularSpeed = actorData.RotationSpeed;
                 }
             }
+
+            agent.enabled = false;
         }
 
         private void Update()
@@ -41,7 +43,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         {
             stateMachine ??= new();
             stateMachine.Initialize(this, agent);
-            stateMachine.SetState<GetFoodState>();
+            stateMachine.SetState<SpawnState>();
         }
     }
 }

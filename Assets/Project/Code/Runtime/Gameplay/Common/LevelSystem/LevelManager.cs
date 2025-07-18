@@ -43,8 +43,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.LevelSystem
         [SerializeField]
         private LevelSection[] mallSections;
 
-        private int maxVisitors;
-
         public ICurrancyProvider CurrencyProvider => currencyProvider;
         public IInteriorObjectsHandler InteriorObjectsHandler => interiorObjectsHandler;
         public ILevelSectionsManager LevelSectionsManager => levelSectionsManager;

@@ -42,7 +42,9 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.SpwnerSystem
 
             var actor = pool.Get();
             var point = Random.Range(0, spawnPoint.Length);
-            actor.transform.SetPositionAndRotation(spawnPoint[point].GetPosition(), rotation);
+            //actor.transform.SetPositionAndRotation(spawnPoint[point].GetPosition(), rotation);
+            actor.transform.localPosition = spawnPoint[point].GetPosition();
+            Debug.Log($"Spawning actor of type {type} at position {spawnPoint[point].GetPosition()}");
             actor.Initialize();
 
             LevelManager.Instance.VisitorsProvider.Incrementisitors();

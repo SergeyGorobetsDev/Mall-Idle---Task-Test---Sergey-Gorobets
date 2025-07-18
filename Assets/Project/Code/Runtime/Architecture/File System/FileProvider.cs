@@ -43,7 +43,7 @@ namespace Assets.Project.Code.Runtime.Architecture.FileSystem
 
             using FileStream destinationStream = new(filePath, FileMode.Open, FileAccess.Write, FileShare.Write, bufferSize: 4096, useAsync: true);
             using StreamWriter writer = new(destinationStream);
-            await writer.WriteLineAsync(text);
+            await writer.WriteAsync(text);
             this.cancellationToken.Cancel();
             this.cancellationToken = default;
         }
