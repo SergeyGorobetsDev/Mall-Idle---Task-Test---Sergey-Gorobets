@@ -22,9 +22,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         {
             base.Enter();
 
-            Debug.Log($"Entering {nameof(GoToCashRegisterState)}");
-
-
             List<InteriorEntity> cashRegisters = LevelManager.Instance.InteriorObjectsHandler.GetInteriorObjects(InteriorType.CashRegister);
             if (cashRegisters.Count > 0)
             {
@@ -35,7 +32,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
             }
             else
             {
-                Debug.LogWarning("No cashRegister available for the actor to get food.");
                 actorStateMachine.SetState<WaitForCachRegisterState>();
             }
         }

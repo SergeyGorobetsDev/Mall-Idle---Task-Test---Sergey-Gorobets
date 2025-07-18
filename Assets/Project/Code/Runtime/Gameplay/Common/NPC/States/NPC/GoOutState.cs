@@ -20,9 +20,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         public override void Enter()
         {
             base.Enter();
-
-            Debug.Log($"Entering {nameof(GoOutState)}");
-
             navMeshAgent.isStopped = false;
             IReadOnlyList<ActorSpawnPoint> points = LevelManager.Instance.ActorsSpawnHandler.SpawnPoints;
             position = points[Random.Range(0, points.Count)].GetPosition();

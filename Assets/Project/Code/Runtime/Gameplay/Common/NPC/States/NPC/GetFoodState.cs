@@ -21,9 +21,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         public override void Enter()
         {
             base.Enter();
-
-            Debug.Log($"Entering {nameof(GetFoodState)}");
-
             List<InteriorEntity> freezers = LevelManager.Instance.InteriorObjectsHandler.GetInteriorObjects(InteriorType.Freezer);
             if (freezers.Count > 0)
             {

@@ -31,7 +31,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
 
             if (interiorQueuePoint.IsFirstInQueue(actorEntity))
             {
-                Debug.Log($"{actorEntity} is first in queue at {interiorQueuePoint.name}. Transitioning to PayForFoodState.");
                 actorStateMachine.SetState<PayForFoodState, InteriorEntity>(target);
             }
             else

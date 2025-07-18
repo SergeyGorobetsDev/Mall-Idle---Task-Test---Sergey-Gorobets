@@ -5,7 +5,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
 {
     public sealed class SpawnState : State
     {
-        private float waitDefaultTimer = 2f;
+        private const float waitDefaultTimer = 2f;
         private float waitTimer;
 
         public SpawnState(StateMachine actorStateMachine, ActorEntity actorEntity, NavMeshAgent navMeshAgent) : base(actorStateMachine, actorEntity, navMeshAgent)

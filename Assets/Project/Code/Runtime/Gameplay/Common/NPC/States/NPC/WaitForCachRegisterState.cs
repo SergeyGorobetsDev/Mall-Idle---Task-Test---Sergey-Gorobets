@@ -6,7 +6,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
     [SerializeField]
     public class WaitForCachRegisterState : State
     {
-        private float waitDefaultTimer = 5f;
+        private const float waitDefaultTimer = 5f;
         private float waitTimer;
 
         public WaitForCachRegisterState(StateMachine actorStateMachine, ActorEntity actorEntity, NavMeshAgent navMeshAgent) : base(actorStateMachine, actorEntity, navMeshAgent)
