@@ -21,19 +21,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.Extencions
                 slider = GetComponent<Slider>();
 
             slider.minValue = 0f;
-            slider.gameObject.SetActive(false);
-        }
-
-        private void OnEnable()
-        {
-            if (interiorEntity != null)
-                interiorEntity.OnStartProgress += FillTo;
-        }
-
-        private void OnDisable()
-        {
-            if (interiorEntity != null)
-                interiorEntity.OnStartProgress -= FillTo;
         }
 
         public void FillTo(float targetValue)
@@ -56,7 +43,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.Extencions
             while (currentValue < targetValue)
             {
                 currentValue += fillSpeed * Time.deltaTime;
-                //currentValue = Mathf.Min(currentValue, targetValue);
+                currentValue = Mathf.Min(currentValue, targetValue);
                 slider.value = currentValue;
                 yield return null;
             }

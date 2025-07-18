@@ -29,7 +29,7 @@ public class SaveLoadHandler : MonoBehaviour, ISaveLoadHandler
             progressData = new();
             progressData.Version = Application.version;
             progressData.NewGame = true;
-            progressData.Money = 1000;
+            progressData.Money = 100;
             fileProvider.Cancel();
 #if UNITY_EDITOR
             Debug.Log("Create new user data");

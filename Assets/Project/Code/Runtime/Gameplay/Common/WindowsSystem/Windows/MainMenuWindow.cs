@@ -20,21 +20,13 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.WindowsSystem.Windows
             startButton.onClick.AddListener(() =>
             {
 
+                EngineSystem.Instance.WindowsNavigator.Show<LoadingWindow>();
                 SceneManager.UnloadSceneAsync(1).completed += (operation) =>
                 {
-#if UNITY_EDITOR
-                    Debug.Log("MainMenu scene unloaded successfully.");
-#endif
                 };
-
-
                 SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive).completed += (operation) =>
                 {
-
                     EngineSystem.Instance.WindowsNavigator.Show<GameplayWindow>();
-#if UNITY_EDITOR
-                    Debug.Log("Gameplay scene loaded successfully.");
-#endif
                 };
             });
             settingsButton.onClick.AddListener(() =>

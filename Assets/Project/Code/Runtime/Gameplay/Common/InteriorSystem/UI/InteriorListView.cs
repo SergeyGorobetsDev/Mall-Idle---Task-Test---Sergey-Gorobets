@@ -34,6 +34,18 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.InteriorSystem.UI
 
         }
 
+        protected override void Register()
+        {
+            base.Register();
+            LevelManager.Instance.CurrencyProvider.OnMoneyChanged += CheckSlotsCanBePurchase;
+        }
+
+        protected override void UnRegister()
+        {
+            base.UnRegister();
+            LevelManager.Instance.CurrencyProvider.OnMoneyChanged -= CheckSlotsCanBePurchase;
+        }
+
         protected override void UpgradeSlotClicked(int id)
         {
             Debug.Log("UpgradeSlotClicked");
@@ -66,7 +78,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.InteriorSystem.UI
             CheckSlotsCanBePurchase();
         }
 
-        private void CheckSlotsCanBePurchase()
+        private void CheckSlotsCanBePurchase(float value = 0)
         {
             for (int i = 0; i < found.Count; i++)
                 if (i < found.Count)

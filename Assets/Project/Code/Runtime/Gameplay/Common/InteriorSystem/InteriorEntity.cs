@@ -3,7 +3,6 @@ using Assets.Project.Code.Runtime.Gameplay.Common.AudioSystem;
 using Assets.Project.Code.Runtime.Gameplay.Common.Extencions;
 using Assets.Project.Code.Runtime.Gameplay.Common.LevelSystem;
 using Assets.Project.Code.Runtime.Progress;
-using System;
 using UnityEngine;
 
 namespace Assets.Project.Code.Runtime.Gameplay.Common.InteriorSystem
@@ -38,8 +37,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.InteriorSystem
 
         [SerializeField]
         private ProgressBar progressBar;
-
-        public event Action<float> OnStartProgress;
 
         public int ID
         {
@@ -117,7 +114,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.InteriorSystem
                     LevelManager.Instance.CurrencyProvider.AddMoney(interiorEntityData.Upgrades[currentLevel].Value);
                     break;
                 case InteriorType.CashRegister:
-                    //OnStartProgress?.Invoke(CurrentUpgradeData.Value);
                     progressBar.FillTo(CurrentUpgradeData.Value);
                     EngineSystem.Instance.AudioPlayer.Play("cash_register", MixerTarget.SFX);
                     break;

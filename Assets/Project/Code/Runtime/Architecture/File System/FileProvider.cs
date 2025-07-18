@@ -1,5 +1,4 @@
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -17,35 +16,29 @@ namespace Assets.Project.Code.Runtime.Architecture.FileSystem
         {
             this.cancellationToken = new();
             if (!File.Exists(filePath))
-                File.Create(filePath).Dispose();
+                return string.Empty; // Don't create an empty file, just return empty
+
+#if UNITY_EDITOR
+            Debug.Log($"Reading file by path : {filePath}");
+#endif
 
             using FileStream sourceStream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true);
             using StreamReader reader = new(sourceStream);
-            StringBuilder sb = new();
-
-            while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
-            {
-                string line = await reader.ReadLineAsync();
-                sb.AppendLine(line);
-            }
+            string content = await reader.ReadToEndAsync();
             this.cancellationToken.Cancel();
             this.cancellationToken = default;
-            return sb.ToString();
-
+            return content;
         }
 
         public async Task WriteFileAsync(string filePath, string text)
         {
-            this.cancellationToken = new();
+#if UNITY_EDITOR
+            Debug.Log($"Writing file by path : {filePath}");
+#endif
 
-            if (!File.Exists(filePath))
-                File.Create(filePath).Dispose();
-
-            using FileStream destinationStream = new(filePath, FileMode.Open, FileAccess.Write, FileShare.Write, bufferSize: 4096, useAsync: true);
+            using FileStream destinationStream = new(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true);
             using StreamWriter writer = new(destinationStream);
             await writer.WriteAsync(text);
-            this.cancellationToken.Cancel();
-            this.cancellationToken = default;
         }
 
         public void DeleteFile(string filePath)
