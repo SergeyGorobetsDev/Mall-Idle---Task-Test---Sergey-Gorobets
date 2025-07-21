@@ -16,7 +16,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         {
             base.Enter();
             waitTimer = waitDefaultTimer;
-
         }
 
         public override void Update()

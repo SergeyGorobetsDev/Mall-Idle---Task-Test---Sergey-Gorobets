@@ -1,6 +1,5 @@
 ﻿using Assets.Project.Code.Runtime.Gameplay.Common.InteriorSystem;
 using System;
-using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
@@ -17,8 +16,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
 
         public override void Enter(InteriorEntity target)
         {
-            Debug.Log($"Entering {nameof(StayInPayFoodQueueState)}");
-
             this.target = target;
             this.interiorQueuePoint = target.InteriorQueue;
             this.interiorQueuePoint.JoinQueue(actorEntity);
@@ -28,15 +25,8 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
         {
             base.Update();
 
-
             if (interiorQueuePoint.IsFirstInQueue(actorEntity))
-            {
                 actorStateMachine.SetState<PayForFoodState, InteriorEntity>(target);
-            }
-            else
-            {
-                Debug.Log($"{actorEntity} is not first in queue at {interiorQueuePoint.name}. Waiting...");
-            }
         }
 
         public override void Exit()

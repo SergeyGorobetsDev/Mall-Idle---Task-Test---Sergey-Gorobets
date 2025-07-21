@@ -29,10 +29,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
                 position = freezer.InteriorQueue.GetQueuePosition();
                 navMeshAgent.SetDestination(position);
             }
-            else
-            {
-                Debug.LogWarning("No freezers available for the actor to get food.");
-            }
         }
 
         public override void Update()

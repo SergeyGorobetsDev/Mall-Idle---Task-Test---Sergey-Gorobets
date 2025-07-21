@@ -22,7 +22,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
             this.cashRegister = cashRegister;
             waitTime = cashRegister.CurrentUpgradeData.Value;
             cashRegister.Procces();
-            Debug.Log($"Entering {nameof(PayForFoodState)}, Wait Time : {waitTime}");
         }
 
         public override void Update()

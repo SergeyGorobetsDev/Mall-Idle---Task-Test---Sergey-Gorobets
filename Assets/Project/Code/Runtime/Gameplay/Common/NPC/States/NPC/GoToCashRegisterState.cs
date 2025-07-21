@@ -43,15 +43,9 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
             if (cashRegister == null) return;
 
             if (TargetPositionReached())
-            {
-                Debug.Log("Target reached position and Transit to StayInPayFoodQueueState state");
                 actorStateMachine.SetState<StayInPayFoodQueueState, InteriorEntity>(cashRegister);
-            }
             else
-            {
                 navMeshAgent.SetDestination(position);
-                //Debug.Log($"Moving to cash register at position: {position} | current position {navMeshAgent.transform.position}");
-            }
         }
 
         public override void Exit()
