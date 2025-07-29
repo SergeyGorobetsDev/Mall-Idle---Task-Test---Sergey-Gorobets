@@ -7,18 +7,15 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.Extencions
     {
         private Camera mainCamera;
 
-        private void Start()
-        {
+        private void Start() =>
             mainCamera = EngineSystem.Instance.CameraProvider.GetMainCamera();
-        }
 
         void LateUpdate()
         {
-            if (mainCamera != null)
-            {
-                transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward,
-                                 mainCamera.transform.rotation * Vector3.up);
-            }
+            if (mainCamera == null)
+                return;
+            transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward,
+                             mainCamera.transform.rotation * Vector3.up);
         }
     }
 }

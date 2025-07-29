@@ -26,10 +26,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
             base.Update();
 
             if (InteriorQueuePoint.IsFirstInQueue(actorEntity))
-            {
-                target.Procces();
                 actorStateMachine.SetState<GoToCashRegisterState>();
-            }
         }
 
         public override void Exit()

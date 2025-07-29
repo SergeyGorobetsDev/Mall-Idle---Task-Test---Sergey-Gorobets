@@ -6,16 +6,14 @@ using UnityEngine.Pool;
 
 namespace Assets.Project.Code.Runtime.Gameplay.Common.SpwnerSystem
 {
-    public sealed partial class ActorsSpawnHandler : MonoBehaviour, IActorsSpawnHandler
+    public sealed class ActorsSpawnHandler : MonoBehaviour, IActorsSpawnHandler
     {
         [SerializeField]
         private List<ActorPoolConfig> actorPools;
-
-        private Dictionary<ActorType, ObjectPool<ActorEntity>> pools = new();
-
         [SerializeField]
         private ActorSpawnPoint[] spawnPoint;
 
+        private Dictionary<ActorType, ObjectPool<ActorEntity>> pools = new();
         public IReadOnlyList<ActorSpawnPoint> SpawnPoints => spawnPoint;
 
         private void Awake()
@@ -41,12 +39,9 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.SpwnerSystem
                 return null;
 
             var actor = pool.Get();
-            var point = Random.Range(0, spawnPoint.Length);
-            //actor.transform.SetPositionAndRotation(spawnPoint[point].GetPosition(), rotation);
-            actor.transform.localPosition = spawnPoint[point].GetPosition();
-            Debug.Log($"Spawning actor of type {type} at position {spawnPoint[point].GetPosition()}");
+            var point = UnityEngine.Random.Range(0, spawnPoint.Length);
+            actor.transform.SetPositionAndRotation(spawnPoint[point].GetPosition(), rotation);
             actor.Initialize();
-
             LevelManager.Instance.VisitorsProvider.Incrementisitors();
             return actor;
         }

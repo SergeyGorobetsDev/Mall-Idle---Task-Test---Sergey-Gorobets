@@ -30,10 +30,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
                 position = cashRegister.InteriorQueue.GetQueuePosition();
                 navMeshAgent.SetDestination(position);
             }
-            else
-            {
-                actorStateMachine.SetState<WaitForCachRegisterState>();
-            }
+            else actorStateMachine.SetState<WaitForCachRegisterState>();
         }
 
         public override void Update()

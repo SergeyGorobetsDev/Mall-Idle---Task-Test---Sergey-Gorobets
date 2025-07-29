@@ -1,6 +1,7 @@
 ﻿using Assets.Project.Code.Runtime.Architecture.Engine;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets.Project.Code.Runtime.Gameplay.Common.WindowsSystem
@@ -30,6 +31,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.WindowsSystem
         protected bool callbacksRegistered;
 
         public int SortOrder => canvas.sortingOrder;
+        public UnityEvent OnShowEvent;
 
         public virtual void Show()
         {
@@ -40,6 +42,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.WindowsSystem
             if (!callbacksRegistered)
                 RegisterCallbacks();
 
+            OnShowEvent?.Invoke();
             FocusElement();
         }
 

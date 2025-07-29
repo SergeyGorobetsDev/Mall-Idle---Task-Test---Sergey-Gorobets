@@ -1,4 +1,5 @@
 ﻿using Assets.Project.Code.Runtime.Architecture.Engine;
+using Assets.Project.Code.Runtime.Gameplay.Common.NPC;
 using System;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.LevelSystem
 
         public int CurrentVisitors => currentVisitors;
         public int MaxVisitors => maxVisitors;
-
+        public event Action<int> OnVisitorsChanged;
         public void Initialize(int maxVisitors) => this.maxVisitors = maxVisitors;
 
         public void IncrementMaxVisitors(int amount = 1)
@@ -22,7 +23,6 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.LevelSystem
             maxVisitors += amount;
             EngineSystem.Instance.SaveLoadHandler.ProgressData.AvailableVisitorAmoung = maxVisitors;
         }
-
 
         public void Incrementisitors()
         {
@@ -41,7 +41,8 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.LevelSystem
             if (currentVisitors < maxVisitors)
             {
                 currentVisitors++;
-                LevelManager.Instance.ActorsSpawnHandler.Spawn(NPC.ActorType.Buyer, Quaternion.identity);
+                LevelManager.Instance.ActorsSpawnHandler.Spawn(ActorType.Buyer, Quaternion.identity);
+                OnVisitorsChanged?.Invoke(currentVisitors);
             }
             else
             {

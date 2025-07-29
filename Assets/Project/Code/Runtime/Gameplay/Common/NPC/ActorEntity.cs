@@ -19,17 +19,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
 
         private void Awake()
         {
-            if (agent == null)
-            {
-                if (TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
-                {
-                    this.agent = agent;
-                    agent.speed = actorData.MovementSpeed;
-                    agent.angularSpeed = actorData.RotationSpeed;
-                }
-            }
-
-            agent.enabled = false;
+            InitNavMeshAgentComponent();
         }
 
         private void Update()
@@ -37,6 +27,19 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.NPC
             if (stateMachine == null || agent == null)
                 return;
             stateMachine.Update();
+        }
+
+        private void InitNavMeshAgentComponent()
+        {
+            if (this.agent != null) return;
+
+            if (TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
+            {
+                this.agent = agent;
+                this.agent.speed = actorData.MovementSpeed;
+                this.agent.angularSpeed = actorData.RotationSpeed;
+                this.agent.enabled = false;
+            }
         }
 
         public void Initialize()

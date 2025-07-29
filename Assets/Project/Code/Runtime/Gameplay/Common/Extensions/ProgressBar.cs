@@ -25,10 +25,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.Extencions
 
         public void FillTo(float targetValue)
         {
-            Debug.Log($"Fill progress {targetValue}");
-
             slider.gameObject.SetActive(true);
-
             if (fillCoroutine != null)
                 StopCoroutine(fillCoroutine);
 

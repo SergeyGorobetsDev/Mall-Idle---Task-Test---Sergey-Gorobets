@@ -11,13 +11,13 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.WindowsSystem.Windows
     {
         [SerializeField]
         private CurrencyView currencyView;
+        [SerializeField]
+        private VisitorsView visitorsView;
 
         [SerializeField]
         private Button settingsButton;
-
         [SerializeField]
         private Button pauseButton;
-
         [SerializeField]
         private TabMenu upgradesTabMenu;
 
@@ -32,6 +32,7 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.WindowsSystem.Windows
             base.BindDocumentData();
 
             currencyView.Initalize(LevelManager.Instance.CurrencyProvider);
+            visitorsView.Initalize(LevelManager.Instance.VisitorsProvider);
             upgradesTabMenu.Initialize();
         }
 
