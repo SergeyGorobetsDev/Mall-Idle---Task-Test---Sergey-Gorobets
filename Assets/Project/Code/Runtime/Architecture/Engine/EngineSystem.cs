@@ -72,50 +72,30 @@ namespace Assets.Project.Code.Runtime.Architecture.Engine
         {
             if (audioPlayer == null)
             {
-                audioPlayer = GetComponentInChildren<AudioPlayer>();
+                AudioPlayer = GetComponentInChildren<IAudioPlayer>();
                 if (audioPlayer == null)
-                {
-#if UNITY_EDITOR
-                    Debug.LogError("AudioPlayer not found in the scene.");
-#endif
-                    return;
-                }
+                    AudioPlayer = this.gameObject.AddComponent<AudioPlayer>();
             }
 
             if (saveLoadHandler == null)
             {
-                saveLoadHandler = GetComponentInChildren<SaveLoadHandler>();
+                SaveLoadHandler = GetComponentInChildren<ISaveLoadHandler>();
                 if (saveLoadHandler == null)
-                {
-#if UNITY_EDITOR
-                    Debug.LogError("SaveLoadHandler not found in the scene.");
-#endif
-                    return;
-                }
+                    SaveLoadHandler = this.gameObject.AddComponent<SaveLoadHandler>();
             }
 
             if (resourcesProvider == null)
             {
-                resourcesProvider = GetComponentInChildren<ResourcesProvider>();
+                ResourcesProvider = GetComponentInChildren<IResourcesProvider>();
                 if (resourcesProvider == null)
-                {
-#if UNITY_EDITOR
-                    Debug.LogError("ResourcesProvider not found in the scene.");
-#endif
-                    return;
-                }
+                    ResourcesProvider = this.gameObject.AddComponent<ResourcesProvider>();
             }
 
             if (windowsNavigator == null)
             {
-                windowsNavigator = GetComponentInChildren<WindowsNavigator>();
+                WindowsNavigator = GetComponentInChildren<IWindowsNavigator>();
                 if (windowsNavigator == null)
-                {
-#if UNITY_EDITOR
-                    Debug.LogError("WindowsNavigator not found in the scene.");
-#endif
-                    return;
-                }
+                    WindowsNavigator = this.gameObject.AddComponent<WindowsNavigator>();
             }
 
             cameraProvider ??= new CameraProvider();

@@ -12,13 +12,13 @@ namespace Assets.Project.Code.Runtime.Gameplay.Common.LevelSystem
 
         private void Awake()
         {
+            InitComponents();
+        }
+
+        private void InitComponents()
+        {
             if (visitorsAmountText == null)
-            {
-#if UNITY_EDITOR
-                Debug.LogError("Money Text is not assigned in the CurrencyView component.");
-#endif
                 visitorsAmountText = this.GetComponentInChildren<TMP_Text>();
-            }
         }
 
         public void Initalize(IVisitorsProvider visitorsProvider)
